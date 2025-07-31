@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Modern Express</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
+        
+        .cv-container {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            display: grid;
+            grid-template-columns: 35% 65%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Left Column */
+        .left-column {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 2rem 1.5rem;
+        }
+        
+        .profile-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: #ecf0f1;
+            border: 4px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #7f8c8d;
+            overflow: hidden;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .profile-photo.no-photo::before {
+            content: "📷";
+            font-size: 2rem;
+        }
+        
+        .name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .title {
+            font-size: 1.1rem;
+            color: #ecf0f1;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .contact-icon {
+            width: 20px;
+            margin-right: 0.8rem;
+            text-align: center;
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-name {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+        
+        .skill-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: #e74c3c;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .language-level {
+            background: #e74c3c;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Right Column */
+        .right-column {
+            padding: 2rem;
+            background: white;
+        }
+        
+        .main-section {
+            margin-bottom: 2rem;
+        }
+        
+        .main-section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 0.5rem;
+        }
+        
+        .experience-item,
+        .education-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .experience-item:last-child,
+        .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.2rem;
+        }
+        
+        .item-company {
+            font-size: 1rem;
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        
+        .item-date {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: 500;
+            background: #ecf0f1;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
+        
+        .item-description {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .item-description ul {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .item-description li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .about-text {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                max-width: none;
+                width: 100%;
+                height: 100vh;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+            
+            .left-column {
+                order: 2;
+            }
+            
+            .right-column {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-photo no-photo" id="profilePhoto">
+                    <!-- Photo will be inserted here -->
+                </div>
+                <div class="name" data-field="fullName">PRÉNOM NOM</div>
+                <div class="title" data-field="jobTitle">Titre du Poste</div>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="section">
+                <div class="section-title">Contact</div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div data-field="email">email@exemple.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div data-field="phone">+33 6 12 34 56 78</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div data-field="address">Ville, Pays</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <div data-field="linkedin">linkedin.com/in/profil</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div data-field="website">www.portfolio.com</div>
+                </div>
+            </div>
+            
+            <!-- Skills Section -->
+            <div class="section">
+                <div class="section-title">Compétences</div>
+                <div class="skill-item">
+                    <div class="skill-name">JavaScript</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">React</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Node.js</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Python</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">SQL</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Languages Section -->
+            <div class="section">
+                <div class="section-title">Langues</div>
+                <div class="language-item">
+                    <span>Français</span>
+                    <span class="language-level">Natif</span>
+                </div>
+                <div class="language-item">
+                    <span>Anglais</span>
+                    <span class="language-level">C1</span>
+                </div>
+                <div class="language-item">
+                    <span>Espagnol</span>
+                    <span class="language-level">B2</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Column -->
+        <div class="right-column">
+            <!-- About Section -->
+            <div class="main-section">
+                <div class="main-section-title">À Propos</div>
+                <div class="about-text" data-field="about">
+                    Développeur Full-Stack passionné avec plus de 5 ans d'expérience dans la création d'applications web modernes et performantes. Expert en JavaScript, React et Node.js, je maîtrise l'ensemble du cycle de développement, de la conception à la mise en production. Toujours à l'affût des dernières technologies, j'aime relever des défis techniques complexes et collaborer en équipe pour créer des solutions innovantes.
+                </div>
+            </div>
+            
+            <!-- Experience Section -->
+            <div class="main-section">
+                <div class="main-section-title">Expérience Professionnelle</div>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Développeur Full-Stack Senior</div>
+                            <div class="item-company">TechCorp Solutions</div>
+                        </div>
+                        <div class="item-date">2021 - Présent</div>
+                    </div>
+                    <div class="item-description">
+                        Développement et maintenance d'applications web complexes pour des clients internationaux.
+                        <ul>
+                            <li>Conception et développement d'APIs REST avec Node.js et Express</li>
+                            <li>Création d'interfaces utilisateur modernes avec React et TypeScript</li>
+                            <li>Optimisation des performances et mise en place de tests automatisés</li>
+                            <li>Encadrement d'une équipe de 3 développeurs juniors</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Développeur Frontend</div>
+                            <div class="item-company">Digital Agency</div>
+                        </div>
+                        <div class="item-date">2019 - 2021</div>
+                    </div>
+                    <div class="item-description">
+                        Développement d'interfaces utilisateur pour des sites web et applications mobiles.
+                        <ul>
+                            <li>Intégration de maquettes Figma en code HTML/CSS/JavaScript</li>
+                            <li>Développement de composants React réutilisables</li>
+                            <li>Optimisation SEO et performance des sites web</li>
+                            <li>Collaboration étroite avec les équipes design et backend</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Développeur Web Junior</div>
+                            <div class="item-company">StartupTech</div>
+                        </div>
+                        <div class="item-date">2018 - 2019</div>
+                    </div>
+                    <div class="item-description">
+                        Premier poste en tant que développeur web dans une startup innovante.
+                        <ul>
+                            <li>Développement de fonctionnalités frontend avec Vue.js</li>
+                            <li>Maintenance et amélioration du site web de l'entreprise</li>
+                            <li>Participation aux réunions de planification et de design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Education Section -->
+            <div class="main-section">
+                <div class="main-section-title">Formation</div>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Master en Informatique</div>
+                            <div class="item-company">Université de Technologie</div>
+                        </div>
+                        <div class="item-date">2016 - 2018</div>
+                    </div>
+                    <div class="item-description">
+                        Spécialisation en développement web et génie logiciel. Mention Bien.
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Licence en Informatique</div>
+                            <div class="item-company">Université des Sciences</div>
+                        </div>
+                        <div class="item-date">2013 - 2016</div>
+                    </div>
+                    <div class="item-description">
+                        Formation générale en informatique avec focus sur la programmation et les bases de données.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
