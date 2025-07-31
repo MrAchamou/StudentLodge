@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Corporate Express</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: white;
+        }
+        
+        .cv-container {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid #34495e;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: #ecf0f1;
+            border: 3px solid #34495e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            overflow: hidden;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .profile-photo.no-photo::before {
+            content: "📷";
+            font-size: 1.5rem;
+        }
+        
+        .name {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .title {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 1rem;
+            color: #34495e;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .left-content,
+        .right-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #e74c3c;
+        }
+        
+        /* About Section */
+        .about-text {
+            color: #555;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+        
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .item-header {
+            margin-bottom: 0.8rem;
+        }
+        
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .item-company {
+            font-size: 1rem;
+            color: #e74c3c;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        
+        .item-date {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .item-description {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .item-description ul {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .item-description li {
+            margin-bottom: 0.3rem;
+        }
+        
+        /* Education Section */
+        .education-item {
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 4px solid #34495e;
+        }
+        
+        .education-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-category-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 0.3rem 0;
+            color: #555;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        .skill-list li::before {
+            content: '▪';
+            color: #e74c3c;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* Languages Section */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .language-name {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .language-level {
+            background: #34495e;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Certifications Section */
+        .cert-item {
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .cert-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.2rem;
+        }
+        
+        .cert-issuer {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                max-width: none;
+                width: 100%;
+                padding: 1rem;
+            }
+            
+            .main-content {
+                gap: 2rem;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cv-container {
+                max-width: 100%;
+                padding: 1rem;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .skills-grid,
+            .languages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="profile-photo no-photo" id="profilePhoto">
+                <!-- Photo will be inserted here -->
+            </div>
+            <div class="name" data-field="fullName">PRÉNOM NOM</div>
+            <div class="title" data-field="jobTitle">Directeur Commercial Senior</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <span data-field="email">email@exemple.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📱</span>
+                    <span data-field="phone">+33 6 12 34 56 78</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span data-field="address">Paris, France</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🔗</span>
+                    <span data-field="linkedin">linkedin.com/in/profil</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column -->
+            <div class="left-content">
+                <!-- About Section -->
+                <div class="section">
+                    <div class="section-title">Profil Professionnel</div>
+                    <div class="about-text" data-field="about">
+                        Directeur commercial expérimenté avec plus de 15 ans d'expertise dans le développement d'affaires et la gestion d'équipes commerciales. Spécialisé dans les secteurs B2B et la négociation de contrats complexes. Reconnu pour ma capacité à identifier de nouvelles opportunités de marché et à développer des stratégies commerciales innovantes qui génèrent une croissance durable du chiffre d'affaires.
+                    </div>
+                </div>
+                
+                <!-- Experience Section -->
+                <div class="section">
+                    <div class="section-title">Expérience Professionnelle</div>
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <div class="item-title">Directeur Commercial</div>
+                            <div class="item-company">Enterprise Solutions Corp</div>
+                            <div class="item-date">2020 - Présent</div>
+                        </div>
+                        <div class="item-description">
+                            Direction de l'équipe commerciale nationale (25 personnes) et développement de la stratégie commerciale.
+                            <ul>
+                                <li>Augmentation du CA de 40% en 3 ans (de 15M€ à 21M€)</li>
+                                <li>Négociation et signature de contrats majeurs (+500K€)</li>
+                                <li>Mise en place d'un CRM et optimisation des processus</li>
+                                <li>Formation et encadrement des équipes commerciales</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <div class="item-title">Responsable Commercial Régional</div>
+                            <div class="item-company">TechBusiness Solutions</div>
+                            <div class="item-date">2017 - 2020</div>
+                        </div>
+                        <div class="item-description">
+                            Gestion du portefeuille clients région Île-de-France et développement commercial.
+                            <ul>
+                                <li>Prospection et acquisition de 50+ nouveaux clients</li>
+                                <li>Atteinte de 120% des objectifs commerciaux annuels</li>
+                                <li>Développement de partenariats stratégiques</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <div class="item-title">Commercial Senior</div>
+                            <div class="item-company">Global Sales Inc</div>
+                            <div class="item-date">2014 - 2017</div>
+                        </div>
+                        <div class="item-description">
+                            Vente de solutions logicielles B2B et gestion de comptes clés.
+                            <ul>
+                                <li>Gestion d'un portefeuille de 80 comptes clients</li>
+                                <li>Développement du CA de 2,5M€ à 4,2M€</li>
+                                <li>Participation aux salons professionnels</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="right-content">
+                <!-- Education Section -->
+                <div class="section">
+                    <div class="section-title">Formation</div>
+                    
+                    <div class="education-item">
+                        <div class="item-title">Master en Management Commercial</div>
+                        <div class="item-company">ESSEC Business School</div>
+                        <div class="item-date">2012 - 2014</div>
+                        <div class="item-description">Spécialisation en négociation et développement commercial international.</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <div class="item-title">École de Commerce</div>
+                        <div class="item-company">EDHEC Business School</div>
+                        <div class="item-date">2009 - 2012</div>
+                        <div class="item-description">Formation générale en management et gestion d'entreprise.</div>
+                    </div>
+                </div>
+                
+                <!-- Skills Section -->
+                <div class="section">
+                    <div class="section-title">Compétences</div>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <div class="skill-category-title">Commercial</div>
+                            <ul class="skill-list">
+                                <li>Négociation complexe</li>
+                                <li>Développement d'affaires</li>
+                                <li>Gestion de comptes clés</li>
+                                <li>Prospection B2B</li>
+                                <li>Closing de ventes</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-category-title">Management</div>
+                            <ul class="skill-list">
+                                <li>Leadership d'équipe</li>
+                                <li>Formation commerciale</li>
+                                <li>Stratégie commerciale</li>
+                                <li>Analyse de performance</li>
+                                <li>Coaching commercial</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Languages Section -->
+                <div class="section">
+                    <div class="section-title">Langues</div>
+                    <div class="languages-grid">
+                        <div class="language-item">
+                            <span class="language-name">Français</span>
+                            <span class="language-level">Natif</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">Anglais</span>
+                            <span class="language-level">C2</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">Espagnol</span>
+                            <span class="language-level">B2</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">Allemand</span>
+                            <span class="language-level">B1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certifications Section -->
+                <div class="section">
+                    <div class="section-title">Certifications</div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">Certification Sales Management</div>
+                        <div class="cert-issuer">Salesforce Academy - 2023</div>
+                    </div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">Négociation Avancée</div>
+                        <div class="cert-issuer">Harvard Business School - 2022</div>
+                    </div>
+                    
+                    <div class="cert-item">
+                        <div class="cert-title">Leadership Commercial</div>
+                        <div class="cert-issuer">INSEAD Executive Education - 2021</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

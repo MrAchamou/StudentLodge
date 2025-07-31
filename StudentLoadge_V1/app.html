@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentLoadge Pro - Dashboard</title>
+    <meta name="description" content="Interface professionnelle pour créer des CV et lettres de motivation">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/dark-theme.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
+</head>
+<body class="dark-theme app-body">
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+                        <path d="M8 6C8 4.89543 8.89543 4 10 4H30C31.1046 4 32 4.89543 32 6V34C32 35.1046 31.1046 36 30 36H10C8.89543 36 8 35.1046 8 34V6Z" fill="url(#gradient1)"/>
+                        <path d="M12 12H28V14H12V12Z" fill="white"/>
+                        <path d="M12 18H24V20H12V18Z" fill="white"/>
+                        <path d="M12 24H28V26H12V24Z" fill="white"/>
+                        <defs>
+                            <linearGradient id="gradient1" x1="8" y1="4" x2="32" y2="36">
+                                <stop offset="0%" stop-color="#e11d48"/>
+                                <stop offset="100%" stop-color="#be123c"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">StudentLoadge<span class="logo-pro">Pro</span></span>
+                </div>
+                
+                <div class="project-info" id="projectInfo">
+                    <span class="project-name">Nouveau Projet</span>
+                    <div class="timer-container">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        <span class="timer" id="timer">00:00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="language-switch">
+                    <button class="lang-btn active" data-lang="fr">🇫🇷 FR</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="btn-icon" id="saveBtn" title="Sauvegarder (Ctrl+S)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                        <polyline points="17,21 17,13 7,13 7,21"/>
+                        <polyline points="7,3 7,8 15,8"/>
+                    </svg>
+                </button>
+                
+                <button class="btn-icon" id="exportBtn" title="Exporter (Ctrl+E)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-15"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </button>
+                
+                <button class="btn-icon" id="settingsBtn" title="Paramètres">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+                    </svg>
+                </button>
+                
+                <button class="btn-primary" onclick="window.location.href='index.html'">
+                    <span>Accueil</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Sidebar -->
+    <aside class="app-sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <!-- Navigation Tabs -->
+            <nav class="sidebar-nav">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </button>
+                
+                <button class="nav-tab" data-tab="cv-builder">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    <span>Générateur CV</span>
+                </button>
+                
+                <button class="nav-tab" data-tab="letter-builder">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    <span>Lettres Motivation</span>
+                </button>
+                
+                <button class="nav-tab" data-tab="projects">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>Mes Projets</span>
+                </button>
+            </nav>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3 class="section-title">Actions Rapides</h3>
+                <div class="action-buttons">
+                    <button class="action-btn" data-action="new-cv">
+                        <div class="action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="12" y1="18" x2="12" y2="12"/>
+                                <line x1="9" y1="15" x2="15" y2="15"/>
+                            </svg>
+                        </div>
+                        <div class="action-text">
+                            <span class="action-title">Nouveau CV</span>
+                            <span class="action-subtitle">Créer rapidement</span>
+                        </div>
+                    </button>
+                    
+                    <button class="action-btn" data-action="new-letter">
+                        <div class="action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                <line x1="12" y1="18" x2="12" y2="12"/>
+                                <line x1="9" y1="15" x2="15" y2="15"/>
+                            </svg>
+                        </div>
+                        <div class="action-text">
+                            <span class="action-title">Nouvelle Lettre</span>
+                            <span class="action-subtitle">Motivation pro</span>
+                        </div>
+                    </button>
+                    
+                    <button class="action-btn" data-action="import-data">
+                        <div class="action-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17,8 12,3 7,8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                        </div>
+                        <div class="action-text">
+                            <span class="action-title">Importer</span>
+                            <span class="action-subtitle">Données existantes</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Recent Projects -->
+            <div class="recent-projects">
+                <h3 class="section-title">Projets Récents</h3>
+                <div class="project-list" id="recentProjects">
+                    <!-- Projects will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main" id="mainContent">
+        <!-- Dashboard Tab -->
+        <div class="tab-content active" id="dashboard">
+            <div class="dashboard-header">
+                <h1 class="page-title">Dashboard Freelance</h1>
+                <p class="page-subtitle">Créez des CV et lettres professionnels en quelques minutes</p>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="cvCount">0</span>
+                        <span class="stat-label">CV Créés</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="letterCount">0</span>
+                        <span class="stat-label">Lettres Créées</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="avgTime">0min</span>
+                        <span class="stat-label">Temps Moyen</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="projectCount">0</span>
+                        <span class="stat-label">Projets Clients</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Templates Express -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Templates Express</h3>
+                        <span class="card-badge">⚡ 15-20 min</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Modèles optimisés pour une création ultra-rapide</p>
+                        <div class="express-templates" id="expressTemplates">
+                            <!-- Express templates will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-card" onclick="showExpressTemplates()">Voir tous les templates Express</button>
+                    </div>
+                </div>
+                
+                <!-- Client Form -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Nouveau Projet Client</h3>
+                        <span class="card-badge">📋 Brief</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-description">Formulaire rapide pour collecter les informations client</p>
+                        <form class="client-form" id="clientForm">
+                            <div class="form-group">
+                                <label for="clientName">Nom du client</label>
+                                <input type="text" id="clientName" placeholder="Ex: Jean Dupont">
+                            </div>
+                            <div class="form-group">
+                                <label for="targetPosition">Poste visé</label>
+                                <input type="text" id="targetPosition" placeholder="Ex: Développeur Full-Stack">
+                            </div>
+                            <div class="form-group">
+                                <label for="sector">Secteur d'activité</label>
+                                <select id="sector">
+                                    <option value="">Sélectionner...</option>
+                                    <option value="tech">Technologie</option>
+                                    <option value="business">Business</option>
+                                    <option value="creative">Créatif</option>
+                                    <option value="academic">Académique</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-card btn-primary" onclick="startClientProject()">Démarrer le projet</button>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Activité Récente</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="activity-list" id="activityList">
+                            <!-- Activity items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tips & Tricks -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conseils Pro</h3>
+                        <span class="card-badge">💡 Tips</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tips-list">
+                            <div class="tip-item">
+                                <span class="tip-icon">⚡</span>
+                                <span class="tip-text">Utilisez Ctrl+S pour sauvegarder rapidement</span>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">🎯</span>
+                                <span class="tip-text">Les templates Express sont parfaits pour Fiverr</span>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">🌍</span>
+                                <span class="tip-text">Basculez FR/EN selon le marché client</span>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">📸</span>
+                                <span class="tip-text">Ajoutez une photo pour les CV européens</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CV Builder Tab -->
+        <div class="tab-content" id="cv-builder">
+            <div class="builder-container">
+                <div class="builder-sidebar">
+                    <h2 class="builder-title">Générateur CV</h2>
+                    <div class="template-selector" id="cvTemplateSelector">
+                        <!-- CV templates will be loaded here -->
+                    </div>
+                </div>
+                <div class="builder-main">
+                    <div class="builder-content" id="cvBuilderContent">
+                        <!-- CV builder content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Letter Builder Tab -->
+        <div class="tab-content" id="letter-builder">
+            <div class="builder-container">
+                <div class="builder-sidebar">
+                    <h2 class="builder-title">Lettres de Motivation</h2>
+                    <div class="template-selector" id="letterTemplateSelector">
+                        <!-- Letter templates will be loaded here -->
+                    </div>
+                </div>
+                <div class="builder-main">
+                    <div class="builder-content" id="letterBuilderContent">
+                        <!-- Letter builder content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Projects Tab -->
+        <div class="tab-content" id="projects">
+            <div class="projects-header">
+                <h1 class="page-title">Mes Projets</h1>
+                <div class="projects-actions">
+                    <button class="btn-secondary" onclick="importProjects()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17,8 12,3 7,8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Importer
+                    </button>
+                    <button class="btn-secondary" onclick="exportProjects()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Exporter
+                    </button>
+                </div>
+            </div>
+            
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.0/docx.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/cv-builder.js"></script>
+    <script src="assets/js/letter-builder.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="assets/js/export.js"></script>
+    
+    <script>
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+    </script>
+</body>
+</html>
+

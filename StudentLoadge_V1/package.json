@@ -1,0 +1,46 @@
+{
+  "name": "studentloadge-pro",
+  "version": "1.0.0",
+  "description": "Générateur CV & Lettres Professionnel - L'outil ultime pour freelances",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 3000",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "echo 'Deploy to GitHub Pages'",
+    "test": "echo 'No tests specified'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/StudentLoadge_template.git"
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "generator",
+    "freelance",
+    "professional",
+    "templates",
+    "cover-letter",
+    "job-application",
+    "career",
+    "recruitment"
+  ],
+  "author": "StudentLoadge Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/username/StudentLoadge_template/issues"
+  },
+  "homepage": "https://username.github.io/StudentLoadge_template",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "devDependencies": {},
+  "dependencies": {}
+}
+
